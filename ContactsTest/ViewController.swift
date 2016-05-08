@@ -9,10 +9,15 @@
 import UIKit
 
 class ViewController: UIViewController {
+    @IBOutlet weak var tableView: UITableView!
+    
+    var tds :TableDataSource?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        tds = TableDataSource(parent: self, list:ContactContact.sharedInstance.getAllContacts())
+        self.tableView.dataSource = tds
+        self.tableView.delegate = tds
     }
 
     override func didReceiveMemoryWarning() {
